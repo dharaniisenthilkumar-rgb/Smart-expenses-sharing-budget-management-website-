@@ -1,0 +1,150 @@
+{
+  "users": [
+    {
+      "id": "user-rahul",
+      "name": "Rahul",
+      "email": "rahul@example.com",
+      "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+      "avatar": "R",
+      "createdAt": "2026-09-25T06:36:47.360Z"
+    }
+  ],
+  "sessions": [
+    {
+      "token": "0e630679d3d4df2f5a2eb89b82bc5cd2865e35d35d0037c5",
+      "userId": "user-rahul",
+      "createdAt": "2026-09-25T08:46:40.780Z"
+    }
+  ],
+  "groups": [
+    {
+      "id": "demo1",
+      "name": "Goa Trip 2026",
+      "description": "Summer vacation trip to Goa",
+      "currency": "INR",
+      "budget": 50000,
+      "createdBy": "user-rahul",
+      "members": [
+        {
+          "id": "user-rahul",
+          "name": "Rahul",
+          "role": "ADMIN"
+        },
+        {
+          "id": "member-1",
+          "name": "Priya",
+          "role": "MEMBER"
+        },
+        {
+          "id": "member-2",
+          "name": "Arjun",
+          "role": "MEMBER"
+        },
+        {
+          "id": "member-3",
+          "name": "Sneha",
+          "role": "MEMBER"
+        },
+        {
+          "id": "member-1790317601377",
+          "name": "QA Member",
+          "role": "MEMBER"
+        }
+      ],
+      "createdAt": "2026-09-25T06:23:46.954Z"
+    },
+    {
+      "id": "group-1790317441709",
+      "name": "Weekend Test",
+      "description": "Verification group",
+      "currency": "INR",
+      "budget": 7000,
+      "createdBy": "user-rahul",
+      "members": [
+        {
+          "id": "user-rahul",
+          "name": "Rahul",
+          "role": "ADMIN"
+        },
+        {
+          "id": "member-1790317442420",
+          "name": "Test User",
+          "role": "MEMBER"
+        }
+      ],
+      "createdAt": "2026-09-25T06:24:01.709Z"
+    }
+  ],
+  "expenses": [
+    {
+      "id": "exp-1",
+      "groupId": "demo1",
+      "description": "Hotel Booking",
+      "amount": 10000,
+      "category": "Accommodation",
+      "paidBy": "user-rahul",
+      "splitType": "EQUAL",
+      "participants": [
+        "user-rahul",
+        "member-1",
+        "member-2",
+        "member-3"
+      ],
+      "date": "2024-09-20",
+      "createdAt": "2024-09-20T11:00:00.000Z"
+    },
+    {
+      "id": "exp-2",
+      "groupId": "demo1",
+      "description": "Food",
+      "amount": 5000,
+      "category": "Food",
+      "paidBy": "member-1",
+      "splitType": "EQUAL",
+      "participants": [
+        "user-rahul",
+        "member-1",
+        "member-2",
+        "member-3"
+      ],
+      "date": "2024-09-21",
+      "createdAt": "2024-09-21T12:00:00.000Z"
+    },
+    {
+      "id": "exp-3",
+      "groupId": "demo1",
+      "description": "Transportation",
+      "amount": 3000,
+      "category": "Transport",
+      "paidBy": "member-2",
+      "splitType": "EQUAL",
+      "participants": [
+        "user-rahul",
+        "member-1",
+        "member-2",
+        "member-3"
+      ],
+      "date": "2024-09-22",
+      "createdAt": "2024-09-22T15:00:00.000Z"
+    },
+    {
+      "id": "exp-1790317603231",
+      "groupId": "demo1",
+      "description": "Lunch",
+      "amount": 1200,
+      "category": "Food",
+      "paidBy": "user-rahul",
+      "splitType": "EQUAL",
+      "participants": [
+        "user-rahul",
+        "member-1",
+        "member-2",
+        "member-3",
+        "member-1790317601377"
+      ],
+      "date": "2026-09-25",
+      "createdAt": "2026-09-25T06:26:43.231Z",
+      "splits": {}
+    }
+  ]
+}

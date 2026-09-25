@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartSplit — Luxury Expense Management</title>
+    <meta
+      name="description"
+      content="Luxury expense sharing platform for groups and households"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div id="loginPage" class="login-container">
+      <div class="login-box">
+        <div class="login-brand-row">
+          <div class="brand-badge">S</div>
+          <div>
+            <div class="brand-name">SmartSplit</div>
+            <div class="brand-subtitle">
+              Private finance, beautifully managed
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-switcher">
+          <button class="auth-tab active" data-auth-tab="login">Sign In</button>
+          <button class="auth-tab" data-auth-tab="register">
+            Create Account
+          </button>
+        </div>
+
+        <form id="loginForm" class="auth-form">
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input
+              id="email"
+              class="form-input"
+              value="rahul@example.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              class="form-input"
+              value="password"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            Access dashboard
+          </button>
+        </form>
+
+        <form id="registerForm" class="auth-form hidden">
+          <div class="form-group">
+            <label class="form-label" for="registerName">Full name</label>
+            <input
+              id="registerName"
+              class="form-input"
+              placeholder="Ariana Smith"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="registerEmail">Email</label>
+            <input
+              id="registerEmail"
+              class="form-input"
+              type="email"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="registerPassword">Password</label>
+            <input
+              id="registerPassword"
+              class="form-input"
+              type="password"
+              placeholder="At least 6 characters"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            Create account
+          </button>
+        </form>
+
+        <div class="demo-badge">Demo: rahul@example.com / password</div>
+      </div>
+    </div>
+
+    <div id="appContainer" class="hidden app-shell">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="brand-mark">S</div>
+          <div>
+            <div class="brand-name">SmartSplit</div>
+            <div class="brand-subtitle">Expense manager</div>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-link active" data-page="dashboard">
+            🏠 Dashboard
+          </button>
+          <button class="nav-link" data-page="groups">👥 Groups</button>
+          <button class="nav-link" data-page="expenses">📝 Expenses</button>
+          <button class="nav-link" data-page="settlements">
+            💳 Settlements
+          </button>
+          <button class="nav-link" data-page="budget">💰 Budget</button>
+          <button class="nav-link" data-page="analytics">📊 Analytics</button>
+        </nav>
+
+        <div class="sidebar-user">
+          <div class="user-card">
+            <div class="user-avatar" id="userAvatar">👤</div>
+            <div>
+              <div class="user-name" id="userName">Rahul</div>
+              <div class="user-email" id="userEmail">rahul@example.com</div>
+            </div>
+          </div>
+          <button id="logoutBtn" class="logout-btn">Sign Out</button>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div id="pageTitle">Dashboard</div>
+        </header>
+
+        <section class="content-area">
+          <div id="dashboardPage" class="page">
+            <div class="page-header">
+              <div class="page-title">
+                Welcome back, <span id="dashboardUserName">Rahul</span> 👋
+              </div>
+              <div class="page-subtitle">
+                Your premium overview for the month
+              </div>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-label">Total Groups</div>
+                <div id="totalGroups" class="stat-value">0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">💸</div>
+                <div class="stat-label">Total Spending</div>
+                <div id="totalSpending" class="stat-value">₹0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">📤</div>
+                <div class="stat-label">You Owe</div>
+                <div id="youOwe" class="stat-value">₹0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">📥</div>
+                <div class="stat-label">You're Owed</div>
+                <div id="youAreOwed" class="stat-value">₹0</div>
+              </div>
+            </div>
+
+            <div class="grid-two">
+              <div class="card">
+                <div class="card-title">Recent Groups</div>
+                <div id="recentGroupsList"></div>
+              </div>
+
+              <div class="card">
+                <div class="card-title">Quick Stats</div>
+                <div id="quickStats"></div>
+              </div>
+            </div>
+
+            <div class="smart-grid">
+              <div class="card smart-card">
+                <div class="card-title">Smart Budget Status</div>
+                <div id="dashboardBudgetStatus" class="smart-status">Select a group to see live budget intelligence.</div>
+                <div id="dashboardBudgetMetrics" class="smart-metrics"></div>
+              </div>
+              <div class="card smart-card">
+                <div class="card-title">Smart Insights</div>
+                <div id="dashboardSmartInsight" class="page-subtitle">Add expenses to generate spending insights.</div>
+                <div id="dashboardUnusualAlerts"></div>
+                <button class="btn btn-secondary smart-link" data-page="analytics">Open analytics</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="groupsPage" class="page hidden">
+            <div class="page-header compact-header">
+              <div>
+                <div class="page-title">Groups</div>
+                <div class="page-subtitle">
+                  Keep every household and trip in sync
+                </div>
+              </div>
+              <button id="createGroupBtn" class="btn btn-primary">
+                + New Group
+              </button>
+            </div>
+
+            <div
+              id="selectedGroupPanel"
+              class="card hidden"
+              style="margin-bottom: 20px"
+            >
+              <div class="group-panel-header">
+                <div>
+                  <div class="card-title" id="selectedGroupName">
+                    Selected Group
+                  </div>
+                  <div class="page-subtitle" id="selectedGroupMeta">
+                    Members
+                  </div>
+                </div>
+                <div class="row-actions">
+                  <button id="openGroupDetailBtn" class="btn btn-secondary">
+                    Open Details
+                  </button>
+                  <button id="addMemberBtn" class="btn btn-primary">
+                    + Add Member
+                  </button>
+                </div>
+              </div>
+              <div id="selectedGroupMembers" class="member-grid"></div>
+            </div>
+
+            <div id="groupsList" class="group-grid"></div>
+          </div>
+
+          <div id="groupDetailPage" class="page hidden">
+            <div class="page-header compact-header">
+              <div>
+                <div class="page-title" id="groupDetailTitle">
+                  Group Details
+                </div>
+                <div class="page-subtitle" id="groupDetailSubtitle">
+                  Overview
+                </div>
+              </div>
+              <div class="row-actions">
+                <button class="btn btn-secondary" id="backToGroupsBtn">
+                  Back to Groups
+                </button>
+                <button class="btn btn-primary" id="detailAddMemberBtn">
+                  + Add Member
+                </button>
+                <button class="btn btn-primary" id="detailAddExpenseBtn">
+                  + Add Expense
+                </button>
+              </div>
+            </div>
+
+            <div id="groupDetailStats" class="stats-grid"></div>
+
+            <div class="grid-two">
+              <div class="card">
+                <div class="card-title">Members</div>
+                <div id="groupDetailMembers"></div>
+              </div>
+
+              <div class="card">
+                <div class="card-title">Recent Expenses</div>
+                <div id="groupDetailExpenses"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="expensesPage" class="page hidden">
+            <div class="page-header compact-header">
+              <div>
+                <div class="page-title" id="expensesTitle">Expenses</div>
+                <div class="page-subtitle">Track every payment and split</div>
+              </div>
+              <button id="addExpenseBtn" class="btn btn-primary">
+                + Add Expense
+              </button>
+            </div>
+            <div id="expensesList" class="card"></div>
+          </div>
+
+          <div id="settlementsPage" class="page hidden">
+            <div class="page-header">
+              <div class="page-title">Settlements</div>
+              <div class="page-subtitle">
+                View payment balances and resolutions
+              </div>
+            </div>
+            <div class="card" style="margin-bottom: 24px">
+              <div class="card-title">Member Balances</div>
+              <div id="memberBalances" class="member-grid"></div>
+            </div>
+            <div class="card">
+              <div class="card-title">Settlement Plan</div>
+              <div id="settlementPlan"></div>
+            </div>
+          </div>
+
+          <div id="budgetPage" class="page hidden">
+            <div class="page-header">
+              <div class="page-title">Budget</div>
+              <div class="page-subtitle">
+                Track spending against your target plan
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Overall Budget</div>
+              <div id="budgetDetails"></div>
+            </div>
+            <div class="card simulator-card">
+              <div class="card-title">What-If Budget Simulator</div>
+              <div class="page-subtitle">Test a proposed expense without saving it.</div>
+              <div class="simulator-form">
+                <div class="form-group">
+                  <label class="form-label" for="simulatorAmount">Proposed amount</label>
+                  <input id="simulatorAmount" class="form-input" type="number" min="0" step="0.01" placeholder="e.g. 750" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="simulatorCategory">Category (optional)</label>
+                  <select id="simulatorCategory" class="form-select">
+                    <option value="">Any category</option>
+                    <option>Food</option>
+                    <option>Accommodation</option>
+                    <option>Transport</option>
+                    <option>Entertainment</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+              <div id="simulatorResult" class="simulator-result">Enter an amount to preview its budget impact.</div>
+            </div>
+          </div>
+
+          <div id="analyticsPage" class="page hidden">
+            <div class="page-header">
+              <div class="page-title">Analytics</div>
+              <div class="page-subtitle">
+                See trends and smarter booking decisions
+              </div>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon">💸</div>
+                <div class="stat-label">Total Spending</div>
+                <div id="analyticsTotalSpending" class="stat-value">₹0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">📝</div>
+                <div class="stat-label">Number of Expenses</div>
+                <div id="analyticsExpenseCount" class="stat-value">0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-label">Average Expense</div>
+                <div id="analyticsAverage" class="stat-value">₹0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-label">Largest Expense</div>
+                <div id="analyticsLargest" class="stat-value">₹0</div>
+              </div>
+            </div>
+            <div class="analytics-grid">
+              <div class="card">
+                <div class="card-title">Spending by Category</div>
+                <div id="categoryBreakdown"></div>
+              </div>
+              <div class="card">
+                <div class="card-title">Member Contribution</div>
+                <div id="memberContribution"></div>
+              </div>
+            </div>
+            <div class="card smart-card analytics-insight-card">
+              <div class="card-title">Smart Spending Insight</div>
+              <div id="analyticsInsight" class="page-subtitle">Add expenses to generate an insight.</div>
+              <div id="analyticsUnusualAlerts"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="createGroupModal" class="modal-overlay hidden">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>Create Group</h2>
+          <button class="modal-close" data-close="createGroupModal">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Group Name</label>
+            <input
+              id="groupName"
+              class="form-input"
+              placeholder="e.g. Annual Trip"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <input
+              id="groupDescription"
+              class="form-input"
+              placeholder="Optional description"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Currency</label>
+            <select id="groupCurrency" class="form-select">
+              <option>INR</option>
+              <option>USD</option>
+              <option>EUR</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Budget</label>
+            <input
+              id="groupBudget"
+              class="form-input"
+              type="number"
+              value="50000"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-close="createGroupModal">
+            Cancel
+          </button>
+          <button class="btn btn-primary" id="createGroupSubmit">
+            Create Group
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="addMemberModal" class="modal-overlay hidden">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>Add Member</h2>
+          <button class="modal-close" data-close="addMemberModal">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Member Name</label>
+            <input
+              id="memberNameInput"
+              class="form-input"
+              placeholder="e.g. Karan"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Role</label>
+            <select id="memberRoleInput" class="form-select">
+              <option value="MEMBER">Member</option>
+              <option value="ADMIN">Admin</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-close="addMemberModal">
+            Cancel
+          </button>
+          <button class="btn btn-primary" id="addMemberSubmit">
+            Add Member
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="addExpenseModal" class="modal-overlay hidden">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 class="modal-title">Add Expense</h2>
+          <button class="modal-close" data-close="addExpenseModal">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <input
+              id="expenseDescription"
+              class="form-input"
+              placeholder="Hotel Booking"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Amount</label>
+            <input
+              id="expenseAmount"
+              type="number"
+              class="form-input"
+              placeholder="5000"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select id="expenseCategory" class="form-select">
+              <option>Food</option>
+              <option>Accommodation</option>
+              <option>Transport</option>
+              <option>Entertainment</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Paid By</label>
+            <select id="expensePaidBy" class="form-select"></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input id="expenseDate" type="date" class="form-input" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-close="addExpenseModal">
+            Cancel
+          </button>
+          <button class="btn btn-primary" id="addExpenseSubmit">
+            Add Expense
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
